@@ -1,5 +1,6 @@
 package com.shen.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
     @RequestMapping("/hello")
+    @PreAuthorize("hasAuthority('test')")   //只有拥有"test"权限的用户才可以访问该请求
     public String hello(){
         return "hello";
     }
