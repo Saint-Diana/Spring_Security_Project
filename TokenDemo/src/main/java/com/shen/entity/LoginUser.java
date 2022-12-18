@@ -31,6 +31,11 @@ public class LoginUser implements UserDetails {
     @JSONField(serialize = false)       //这个成员变量不会序列化保存到redis中
     private List<SimpleGrantedAuthority> authorities;
 
+    public LoginUser(User user, List<String> permissions) {
+        this.user = user;
+        this.permissions = permissions;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //只需要封装一次，节约时间

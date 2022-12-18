@@ -37,7 +37,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new RuntimeException("用户名错误");
         }
         //TODO 查询对应的权限信息
-        //设置权限信息数组
+        //设置权限信息数组，这里为了方便测试先写死！实际需要根据情况来设置用户的权限
         List<String> list = new ArrayList<>(Arrays.asList("test", "admin", "user", "guest"));
         //把用户封装为UserDetails接口实现类返回
         return new LoginUser(user, list);
