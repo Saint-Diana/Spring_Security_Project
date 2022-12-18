@@ -3,5 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shen.mapper.UserMapper">
+    <!-- public User selectByUsername(String username); -->
+    <select id="selectByUsername" resultType="com.shen.entity.User">
+        SELECT *
+        FROM sys_user
+        WHERE username = #{0}
+    </select>
 
 </mapper>

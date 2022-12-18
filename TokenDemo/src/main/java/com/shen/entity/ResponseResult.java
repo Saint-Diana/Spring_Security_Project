@@ -1,4 +1,4 @@
-package com.shen.domain;
+package com.shen.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
