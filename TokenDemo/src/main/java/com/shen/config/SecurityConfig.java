@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -20,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @date 2022/12/18 15:08
  */
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)  //开启授权相关配置，使用注解(@PreAuthorize)去指定访问对应的资源所需的权限
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
