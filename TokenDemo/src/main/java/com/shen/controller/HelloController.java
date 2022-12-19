@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
     @RequestMapping("/hello")
-    @PreAuthorize("hasAuthority('test')")   //只有拥有"test"权限的用户才可以访问该请求
+    @PreAuthorize("hasAuthority('system:main:upload')")   //只有拥有"system:main:upload"权限的用户才可以访问该请求
     public String hello(){
         return "hello";
     }

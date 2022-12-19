@@ -1,6 +1,7 @@
 package com.shen;
 
 import com.shen.entity.User;
+import com.shen.mapper.MenuMapper;
 import com.shen.mapper.UserMapper;
 import com.shen.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
@@ -8,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.List;
 
 /**
  * @author Shen
@@ -17,6 +20,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class MapperTest {
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    MenuMapper menuMapper;
 
     @Test
     public void testUserMapper(){
@@ -43,5 +49,11 @@ public class MapperTest {
         String subject = claims.getSubject();
         System.out.println(subject);
         System.out.println(claims);
+    }
+
+    @Test
+    public void testSelectPermsByUserId(){
+        List<String> list = menuMapper.selectPermsByUserId(1L);
+        System.out.println(list);
     }
 }
