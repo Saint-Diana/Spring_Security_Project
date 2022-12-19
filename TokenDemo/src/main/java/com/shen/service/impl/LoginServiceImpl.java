@@ -50,8 +50,9 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements L
         //封装成token，返回给前端
         Map<String, String> map = new HashMap<>();
         map.put("token", jwt);
-        //把用户信息存入redis，userId作为key
+        //把用户信息存入redis，userId作为key，必须把token也一起存到redis当中，然后每次登录都要比对请求头中携带的token与实际redis中的token是否相同！
         redisCache.setCacheObject("login:" + id, loginUser, 7, TimeUnit.DAYS);
+        redisCache.setCacheObject("token:" + id, jwt, 7, TimeUnit.DAYS);
         return new ResponseResult<>(200, "登录成功", map);
     }
 

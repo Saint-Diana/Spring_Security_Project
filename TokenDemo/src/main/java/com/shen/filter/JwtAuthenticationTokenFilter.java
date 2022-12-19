@@ -53,8 +53,15 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         //从redis中获取用户信息
         String redisKey = "login:" + userid;
         LoginUser loginUser = redisCache.getCacheObject(redisKey);
+        //从redis中获取token
+        String tokenKey = "token:" + userid;
+        String redisToken = redisCache.getCacheObject(tokenKey);
         if(Objects.isNull(loginUser)){
             throw new RuntimeException("用户未登录");
+        }
+        //如果请求头携带的token与redis中存放的token不同，说明这个token已经失效了！
+        if(!redisToken.equals(token)){
+            throw new RuntimeException("token已失效");
         }
         //存入SecurityContextHolder
         //TODO 获取权限信息，封装为Authentication对象
